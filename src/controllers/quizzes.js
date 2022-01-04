@@ -1,9 +1,10 @@
 var express = require('express')
 var router = express.Router()
+let quizzes = require('../models/quizzes')
 
 // routes should be around quizzes entity
 router.get('/', (req, res) => {
-    res.send("Quizzes#Index")
+    res.json(quizzes)
 })
 
 router.post('/', (req, res) => {
