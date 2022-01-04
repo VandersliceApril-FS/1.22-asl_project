@@ -40,7 +40,9 @@ router.post('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-    res.send("Quizzes#Delete")
+    const id = Number(req.params.id)
+    quizzes = quizzes.filter(q => q.id !== id) //filter out quiz with id then remove it. return true if id doesn match id that we throw in
+    res.json(quizzes)
 })
 module.exports = router
 
