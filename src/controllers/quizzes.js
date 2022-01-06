@@ -51,3 +51,6 @@ module.exports = router
 
 // update existing quiz data with id
 // curl -X POST --data "id=3&name=ASL Test 3" http://localhost:3000/quizzes/3
+
+// delete using curl
+// curl -X DELETE http://localhost:3000/quizzes/4
