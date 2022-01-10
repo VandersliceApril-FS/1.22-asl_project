@@ -31,7 +31,7 @@ router.post('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     const { id } = req.params
-    const deleted = await Quiz.destroy({
+    const deleted = await Question.destroy({
         where: { id }
     })
     res.redirect('/questions')

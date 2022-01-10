@@ -22,11 +22,11 @@ router.get('/:id', async (req, res) => {
 
 router.post('/:id', async (req, res) => {
     const { name } = req.body
-    const { id } = req.params.id
+    const { id } = req.params
     const choice = await Choice.update({ name }, {
         where: { id }
     })
-    res.json(quiz)
+    res.json(choice)
 })
 
 router.delete('/:id', async (req, res) => {
