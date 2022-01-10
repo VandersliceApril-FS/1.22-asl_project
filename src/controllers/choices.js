@@ -1,46 +1,40 @@
 const express = require('express')
 const router = express.Router()
+const { Choice } = require('../models')
 const bodyParser = require('body-parser')
 router.use(bodyParser.urlencoded({ extended: false }))
-let choices = require('../models/choices')
-const res = require('express/lib/response')
 
-
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    const choices = await Choice.findAll()
     res.json(choices)
 })
 
-router.post('/', (req, res) => {
-    const {id, choice } = req.body
-
-    choices.push({
-        id: Number(id),
-        choice 
-    })
-    res.json(choices)
-})
-
-router.get('/:id', (req, res) => {
-    const id = req.params.id
-    const choice = choices.find(choice => choice.id == id)
+router.post('/', async (req, res) => {
+    const { name } = req.body
+    const choice = await Choice.create({ name })
     res.json(choice)
 })
 
-router.post('/:id', (req, res) => {
-    const id = Number(req.params.id)
-    choices.map(c => {
-        if(id === c.id) {
-            c.choice = req.body.choice
-        }
-        return c
-    })
-    res.json(choices)
+router.get('/:id', async (req, res) => {
+    const choice = await Choice.findByPk(req.params.id)
+    res.json(choice)
 })
 
-router.delete('/:id', (req, res) => {
-    const id = Number(req.params.id)
-    choices = choices.filter(c => c.id !== id)
-    res.json(choices)
+router.post('/:id', async (req, res) => {
+    const { name } = req.body
+    const { id } = req.params.id
+    const choice = await Choice.update({ name }, {
+        where: { id }
+    })
+    res.json(quiz)
+})
+
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params
+    const deleted = await Choice.destroy({
+        where: { id }
+    })
+    res.redirect('/choices')
 })
 
 module.exports = router

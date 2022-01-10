@@ -1,56 +1,54 @@
 const express = require('express')
 const router = express.Router()
-let quizzes = require('../models/quizzes')
+const { Quiz } = require('../models')
 const bodyParser = require('body-parser')
 router.use(bodyParser.urlencoded({ extended: false }))
 
-// routes should be around quizzes entity
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    const quizzes = await  Quiz.findAll()
     res.json(quizzes)
 })
 
-router.post('/', (req, res) => {
-    const { id, name } = req.body
-    
-    //get data from the request using req.body and body-parser
-    quizzes.push({
-        id: Number(id),
-        name
-    })
-    res.json(quizzes)
-})
-
-router.get('/:id', (req, res) => {
-    const id = req.params.id
-    // grab quizzes then find quiz with that id
-    const quiz = quizzes.find(quiz => quiz.id == id) //loop through quizzes then filter out based on true or false
+router.post('/', async (req, res) => {
+    const { name } = req.body
+    const quiz = await Quiz.create({ name })
     res.json(quiz)
 })
 
-router.post('/:id', (req, res) => {
-    const id = Number(req.params.id)
-    //map through and replace
-    quizzes.map((q) => {
-        if(id === q.id) {
-            q.name = req.body.name
-        }
-        return q
-    })
-    res.json(quizzes)
+router.get('/:id', async (req, res) => {
+    const quiz = await Quiz.findByPk(req.params.id)
+    res.json(quiz)
 })
 
-router.delete('/:id', (req, res) => {
-    const id = Number(req.params.id)
-    quizzes = quizzes.filter(q => q.id !== id) //filter out quiz with id then remove it. return true if id doesn match id that we throw in
-    res.json(quizzes)
+router.post('/:id', async (req, res) => {
+    const { name } = req.body
+    const { id } = req.params
+    const quiz = await Quiz.update({ name }, {
+        where: { id }
+    })
+    res.json(quiz)
+})
+
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params
+    const deleted = await Quiz.destroy({ 
+        where: { id }
+    })
+    res.redirect('/quizzes')
 })
 module.exports = router
 
-// post form data with curl:
-// curl -X POST --data "id=6&name=ASL Quiz 6" http://localhost:3000/quizzes
+// tests
+// CREATE: curl -X POST --data "name=April's Quiz" http://localhost:3000/quizzes
+// UPDATE: curl -X POST --data "name=April's Test" http://localhost:3000/quizzes/1
+// DELETE: curl -X DELETE http://localhost:3000/quizzes/1
+// Redirect Response: curl -I -X DELETE http://localhost:3000/quizzes/2
 
-// update existing quiz data with id
-// curl -X POST --data "id=3&name=ASL Test 3" http://localhost:3000/quizzes/3
+// npx sequelize-cli model:generate --name=Choice --attributes=name:string
+// npx sequelize-cli model:generate --name=Question --attributes=name:string
+//  npx sequelize-cli db:migrate
 
-// delete using curl
-// curl -X DELETE http://localhost:3000/quizzes/4
+// CREATE: curl -X POST --data "name=What color is grass?" http://localhost:3000/questions
+// UPDATE: curl -X POST --data "name=What color are strawberries" http://localhost:3000/questions/1
+// DELETE: curl -X DELETE http://localhost:3000/questions
+
