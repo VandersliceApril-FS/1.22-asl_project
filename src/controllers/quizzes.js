@@ -38,26 +38,6 @@ router.delete('/:id', async (req, res) => {
 })
 module.exports = router
 
-// npx sequelize-cli model:generate --name=Choice --attributes=name:string
-// npx sequelize-cli model:generate --name=Question --attributes=name:string
-//  npx sequelize-cli db:migrate
 
-// tests
-// CREATE: curl -X POST --data "name=April's Quiz" http://localhost:3000/quizzes
-// UPDATE: curl -X POST --data "name=April's Test" http://localhost:3000/quizzes/1
-// DELETE: curl -X DELETE http://localhost:3000/quizzes/1
-// Redirect Response: curl -I -X DELETE http://localhost:3000/quizzes/2
-
-// npx sequelize-cli model:generate --name=Choice --attributes=name:string
-// npx sequelize-cli model:generate --name=Question --attributes=name:string
-//  npx sequelize-cli db:migrate
-
-// CREATE: curl -X POST --data "name=What color is grass?" http://localhost:3000/questions
-// UPDATE: curl -X POST --data "name=What color are strawberries" http://localhost:3000/questions/1
-// DELETE: curl -I -X DELETE http://localhost:3000/questions/1
-
-// CREATE: curl -X POST --data "name=Blue" http://localhost:3000/choices
-// UPDATE: curl -X POST --data "name=Red" http://localhost:3000/choices/1
-// DELETE: curl -I -X DELETE http://localhost:3000/choices/1
 
 
