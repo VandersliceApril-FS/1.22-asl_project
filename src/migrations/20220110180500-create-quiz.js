@@ -11,6 +11,10 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      weight: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

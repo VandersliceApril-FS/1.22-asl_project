@@ -12,9 +12,18 @@ Redirect Response: curl -I -X DELETE http://localhost:3000/quizzes/2
 
 
 CREATE: curl -X POST --data "name=What color is grass?" http://localhost:3000/questions
-UPDATE: curl -X POST --data "name=What color are strawberries" http://localhost:3000/questions/1
-DELETE: curl -I -X DELETE http://localhost:3000/questions/1
+UPDATE: curl -X POST --data "name=What color are strawberries" http://localhost:3000/questions/3
+DELETE: curl -I -X DELETE http://localhost:3000/questions/2
 
 CREATE: curl -X POST --data "name=Blue" http://localhost:3000/choices
-UPDATE: curl -X POST --data "name=Red" http://localhost:3000/choices/1
-DELETE: curl -I -X DELETE http://localhost:3000/choices/1
+UPDATE: curl -X POST --data "name=Red" http://localhost:3000/choices/5
+DELETE: curl -I -X DELETE http://localhost:3000/choices/3
+
+
+Adding a column: https://sequelize.org/v3/docs/migrations/
+-----------------------------------------------------------
+Show: curl -X GET http://localhost:3000/quizzes
+CREATE: curl -X POST --data "name=Express&weight=20" http://localhost:3000/quizzes/8
+UPDATE: curl -X POST --data "name=Models and Migrations&weight=30" http://localhost:3000/quizzes/6
+DELETE: curl -X DELETE http://localhost:3000/quizzes/4
+Redirect Response: curl -I -X DELETE http://localhost:3000/quizzes/5
