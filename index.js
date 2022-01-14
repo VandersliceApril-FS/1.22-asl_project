@@ -10,8 +10,7 @@ app.set('views', __dirname + '/src/views') //current directory that this file is
 app.set('view engine', 'twig')
 
 app.get('/', async (request, response) => {
-    const quiz = await Quiz.findByPk(6)
-    response.render('home/home', { quiz }) // invoke rendering engine, name of view you want to render
+    response.render('home/home')
 })
 
 //mount router at certain endpoint. 
