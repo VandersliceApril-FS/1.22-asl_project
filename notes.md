@@ -35,3 +35,6 @@ inject a variable in the second parameter of render, can be an object of all the
 
 ## Loading in a quiz
 Load in the quiz asyn. 
+
+## ability to extend a layout and define blocks
+1. structure application to use a layout. Instead of rendering home.twig, instead make a new folder layouts
