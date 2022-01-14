@@ -28,5 +28,10 @@ UPDATE: curl -X POST --data "name=Models and Migrations&weight=30" http://localh
 DELETE: curl -X DELETE http://localhost:3000/quizzes/4
 Redirect Response: curl -I -X DELETE http://localhost:3000/quizzes/5
 
-Get data from controller into the view
-inject a variablein the second parameer of render, can be an object of all the variables you'd like to deine in your view
+
+
+## Get data from controller into the view
+inject a variable in the second parameter of render, can be an object of all the variables you'd like to deine in your view.
+
+## Loading in a quiz
+Load in the quiz asyn. 
