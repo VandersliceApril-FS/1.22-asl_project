@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Hello Title</title>
+    <title>Hello, Title</title>
 </head>
 <body>
+{% include "partials/header.twig" %}
     {% block main_content %}
     {% endblock %}
+    {% include "partials/footer.twig" %}
     
 </body>
 </html>
