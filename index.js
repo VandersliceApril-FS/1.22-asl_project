@@ -4,8 +4,14 @@ const quizzesCtrl = require('./src/controllers/quizzes')
 const questionsCtrl = require('./src/controllers/questions')
 const choicesCtrl = require('./src/controllers/choices')
 
+app.set('views', __dirname + '/src/views') //current directory that this file is in
+// set view engine to twig
+app.set('view engine', 'twig')
+
 app.get('/', (request, response) => {
-    response.send('Home Page GET')
+    response.render('home', {
+        name: "April"
+    }) // invoke rendering engine, name of view you want to render
 })
 
 //mount router at certain endpoint. 
