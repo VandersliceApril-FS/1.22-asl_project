@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const { Quiz } = require('./src/models')
 const quizzesCtrl = require('./src/controllers/quizzes')
 const questionsCtrl = require('./src/controllers/questions')
 const choicesCtrl = require('./src/controllers/choices')

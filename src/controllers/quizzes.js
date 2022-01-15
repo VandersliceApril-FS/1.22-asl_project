@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const { Quiz } = require('../models')
 const bodyParser = require('body-parser')
-const req = require('express/lib/request')
 router.use(bodyParser.urlencoded({ extended: false }))
 
 router.get('/', async (req, res) => {
@@ -12,7 +11,6 @@ router.get('/', async (req, res) => {
 router.get('/new', (req, res) => {
     res.render('quiz/create')
 })
-
 
 router.post('/', async (req, res) => {
     const { name, weight } = req.body

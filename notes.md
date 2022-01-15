@@ -12,6 +12,7 @@ Redirect Response: curl -I -X DELETE http://localhost:3000/quizzes/2
 
 
 CREATE: curl -X POST --data "name=What color is grass?" http://localhost:3000/questions
+curl -X POST --data "name=What color are strawberries?" http://localhost:3000/questions
 UPDATE: curl -X POST --data "name=What color are strawberries" http://localhost:3000/questions/3
 DELETE: curl -I -X DELETE http://localhost:3000/questions/2
 
