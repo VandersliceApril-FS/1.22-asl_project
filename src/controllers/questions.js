@@ -6,7 +6,12 @@ router.use(bodyParser.urlencoded({ extended: false }))
 
 router.get('/', async (req, res) => {
     const questions = await Question.findAll()
-    res.render('question/index', { questions })
+    if (req.headers.accept.indexOf('/json') > -1) {
+        res.json(questions)
+    } else {
+        res.render('question/index', { questions })
+    }
+    // curl -H "accept: application/json" http://localhost:3000/questions
 })
 router.get('/new', (req, res) => {
     res.render('question/create')
@@ -15,12 +20,21 @@ router.get('/new', (req, res) => {
 router.post('/', async (req, res) => {
     const { name } = req.body
     const question = await Question.create({ name })
-    res.redirect('/questions/' + question.id) 
+    if (req.headers.accept.indexOf('/json') > -1) {
+        res.json(question)
+    } else {
+        res.redirect('/questions/' + question.id) 
+    }
 })
 
 router.get('/:id', async (req, res) => {
     const question = await Question.findByPk(req.params.id)
-    res.render('question/show', { question }) 
+    if (req.headers.accept.indexOf('/json') > -1) {
+        res.json(question)
+    } else {
+        res.render('question/show', { question }) 
+    }
+    
 })
 
 router.get('/:id/edit', async (req, res) => {
@@ -34,7 +48,11 @@ router.post('/:id', async (req, res) => {
     const question = await Question.update({ name }, {
         where: { id }
     })
-    res.redirect('/questions/' + id)
+    if (req.headers.accept.indexOf('/json') > -1) {
+        res.json(question)
+    } else {
+        res.redirect('/questions/' + id)
+    }
 })
 
 router.get('/:id/delete', async (req, res) => {
@@ -42,6 +60,11 @@ router.get('/:id/delete', async (req, res) => {
     const deleted = await Question.destroy({
         where: { id }
     })
-    res.redirect('/questions')
+    if (req.headers.accept.indexOf('/json') > -1) {
+        res.json({'success': true})
+    } else {
+        res.redirect('/questions')
+    }
+    
 })
 module.exports = router

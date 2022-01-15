@@ -6,7 +6,11 @@ router.use(bodyParser.urlencoded({ extended: false }))
 
 router.get('/', async (req, res) => {
     const choices = await Choice.findAll()
-    res.render('choice/index', { choices })
+    if (req.headers.accept.indexOf('/json') > -1) {
+        res.json(choices)
+    } else {
+        res.render('choice/index', { choices })
+    }
 })
 router.get('/new', (req, res) => {
     res.render('choice/create')
@@ -15,12 +19,20 @@ router.get('/new', (req, res) => {
 router.post('/', async (req, res) => {
     const { name } = req.body
     const choice = await Choice.create({ name })
-    res.redirect('/choices/' + choice.id)
+    if (req.headers.accept.indexOf('/json') > -1) {
+        res.json(choice)
+    } else {
+        res.redirect('/choices/' + choice.id)
+    }
 })
 
 router.get('/:id', async (req, res) => {
     const choice = await Choice.findByPk(req.params.id)
-    res.render('choice/show', { choice })
+    if (req.headers.accept.indexOf('/json') > -1) {
+        res.json(choice)
+    } else {
+        res.render('choice/show', { choice })
+    }
 })
 
 router.get('/:id/edit', async (req, res) => {
@@ -34,7 +46,11 @@ router.post('/:id', async (req, res) => {
     const choice = await Choice.update({ name }, {
         where: { id }
     })
-    res.redirect('/choices/' + id)
+    if (req.headers.accept.indexOf('/json') > -1) {
+        res.json(choice)
+    } else {
+        res.redirect('/choices/' + id)
+    }
 })
 
 router.get('/:id/delete', async (req, res) => {
@@ -42,7 +58,11 @@ router.get('/:id/delete', async (req, res) => {
     const deleted = await Choice.destroy({
         where: { id }
     })
-    res.redirect('/choices')
+    if (req.headers.accept.indexOf('/json') > -1) {
+        res.json({'success': true})
+    } else {
+        res.redirect('/choices')
+    }
 })
 
 module.exports = router

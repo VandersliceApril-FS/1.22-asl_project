@@ -1,3 +1,26 @@
+curl -H "accept: application/json" http://localhost:3000/quizzes
+curl -H "accept: application/json" -X POST --data "name=JSON Return Type" http://localhost:3000/quizzes
+curl -H "accept: application/json" -X GET http://localhost:3000/quizzes/13
+curl -H "accept: application/json" -X POST --data "name=JSON Return Type Renamed" http://localhost:3000/quizzes/13
+curl -H "accept: application/json" -X GET http://localhost:3000/quizzes/13/delete
+
+curl -H "accept: application/json" http://localhost:3000/questions
+curl -H "accept: application/json" -X POST --data "name=JSON Return Type" http://localhost:3000/questions
+curl -H "accept: application/json" -X GET http://localhost:3000/questions/#
+curl -H "accept: application/json" -X POST --data "name=What does JSON stand for?" http://localhost:3000/questions/#
+curl -H "accept: application/json" -X GET http://localhost:3000/questions/#/delete
+
+curl -H "accept: application/json" http://localhost:3000/choices
+curl -H "accept: application/json" -X POST --data "name=JavaScript Object Notes" http://localhost:3000/choices
+curl -H "accept: application/json" -X GET http://localhost:3000/choices/#
+curl -H "accept: application/json" -X POST --data "name=JavaScript Object Notation" http://localhost:3000/choices/#
+curl -H "accept: application/json" -X GET http://localhost:3000/choices/#/delete
+
+
+
+
+
+
 npx sequelize-cli model:generate --name=Choice --attributes=name:string
 npx sequelize-cli model:generate --name=Question --attributes=name:string
 npx sequelize-cli model:generate --name=Choice --attributes=name:string
