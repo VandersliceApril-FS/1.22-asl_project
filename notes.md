@@ -1,3 +1,10 @@
+## Week 4
+1. install express session library
+npm install --save express-session
+2. assign access token to session variable
+3. load in session library and configure it in index
+4. respond with redirect back to hompage
+
 ## Week 3 commands
 curl -H "accept: application/json" http://localhost:3000/quizzes
 curl -H "accept: application/json" -X POST --data "name=JSON Return Type" http://localhost:3000/quizzes

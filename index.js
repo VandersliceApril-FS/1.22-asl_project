@@ -4,12 +4,19 @@ const quizzesCtrl = require('./src/controllers/quizzes')
 const questionsCtrl = require('./src/controllers/questions')
 const choicesCtrl = require('./src/controllers/choices')
 const authCtrl = require('./src/controllers/auth')
+const session = require('express-session')
+app.use(session({
+    saveUninitialized: false,
+    secret: 'keyboard cat',
+    cookie: { maxAge: 60000 }
+}))
 
 app.set('views', __dirname + '/src/views') //current directory that this file is in
 // set view engine to twig
 app.set('view engine', 'twig')
 
 app.get('/', async (request, response) => {
+    console.log('access token', request.session.access_token)
     response.render('home/home')
 })
 
