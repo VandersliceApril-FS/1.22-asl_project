@@ -1,7 +1,8 @@
+## Week 3 commands
 curl -H "accept: application/json" http://localhost:3000/quizzes
 curl -H "accept: application/json" -X POST --data "name=JSON Return Type" http://localhost:3000/quizzes
 curl -H "accept: application/json" -X GET http://localhost:3000/quizzes/13
-curl -H "accept: application/json" -X POST --data "name=JSON Return Type Renamed" http://localhost:3000/quizzes/13
+curl -H "accept: application/json" -X POST --data "name=JSON Return Type Renamed" http://localhost:3000/quizzes/16
 curl -H "accept: application/json" -X GET http://localhost:3000/quizzes/13/delete
 
 curl -H "accept: application/json" http://localhost:3000/questions
@@ -16,23 +17,17 @@ curl -H "accept: application/json" -X GET http://localhost:3000/choices/#
 curl -H "accept: application/json" -X POST --data "name=JavaScript Object Notation" http://localhost:3000/choices/#
 curl -H "accept: application/json" -X GET http://localhost:3000/choices/#/delete
 
-
-
-
-
-
+## Week 1 & 2 commands
 npx sequelize-cli model:generate --name=Choice --attributes=name:string
 npx sequelize-cli model:generate --name=Question --attributes=name:string
 npx sequelize-cli model:generate --name=Choice --attributes=name:string
 npx sequelize-cli model:generate --name=Question --attributes=name:string
 npx sequelize-cli db:migrate
 
-
 CREATE: curl -X POST --data "name=April's Quiz" http://localhost:3000/quizzes
 UPDATE: curl -X POST --data "name=April's Test" http://localhost:3000/quizzes/1
 DELETE: curl -X DELETE http://localhost:3000/quizzes/1
 Redirect Response: curl -I -X DELETE http://localhost:3000/quizzes/2
-
 
 CREATE: curl -X POST --data "name=What color is grass?" http://localhost:3000/questions
 curl -X POST --data "name=What color are strawberries?" http://localhost:3000/questions
@@ -44,8 +39,7 @@ UPDATE: curl -X POST --data "name=Red" http://localhost:3000/choices/5
 DELETE: curl -I -X DELETE http://localhost:3000/choices/3
 
 
-Adding a column: https://sequelize.org/v3/docs/migrations/
------------------------------------------------------------
+Adding a column help: https://sequelize.org/v3/docs/migrations/
 Show: curl -X GET http://localhost:3000/quizzes
 CREATE: curl -X POST --data "name=Express&weight=20" http://localhost:3000/quizzes/8
 UPDATE: curl -X POST --data "name=Models and Migrations&weight=30" http://localhost:3000/quizzes/6
