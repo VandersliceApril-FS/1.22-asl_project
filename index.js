@@ -5,7 +5,6 @@ const questionsCtrl = require('./src/controllers/questions')
 const choicesCtrl = require('./src/controllers/choices')
 const authCtrl = require('./src/controllers/auth')
 const session = require('express-session')
-const res = require('express/lib/response')
 app.use(session({
     saveUninitialized: false,
     secret: 'keyboard cat',
