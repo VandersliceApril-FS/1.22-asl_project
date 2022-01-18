@@ -3,8 +3,9 @@ const router = express.Router()
 const { Question } = require('../models')
 const bodyParser = require('body-parser')
 router.use(bodyParser.urlencoded({ extended: false }))
+const { isAuthenticated } = require('../middlewares/auth')
 
-router.get('/', async (req, res) => {
+router.get('/', isAuthenticated, async (req, res) => {
     const questions = await Question.findAll()
     if (req.headers.accept.indexOf('/json') > -1) {
         res.json(questions)
@@ -13,11 +14,11 @@ router.get('/', async (req, res) => {
     }
     // curl -H "accept: application/json" http://localhost:3000/questions
 })
-router.get('/new', (req, res) => {
+router.get('/new', isAuthenticated, (req, res) => {
     res.render('question/create')
 })
 
-router.post('/', async (req, res) => {
+router.post('/', isAuthenticated, async (req, res) => {
     const { name } = req.body
     const question = await Question.create({ name })
     if (req.headers.accept.indexOf('/json') > -1) {
@@ -27,7 +28,7 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', isAuthenticated, async (req, res) => {
     const question = await Question.findByPk(req.params.id)
     if (req.headers.accept.indexOf('/json') > -1) {
         res.json(question)
@@ -37,12 +38,12 @@ router.get('/:id', async (req, res) => {
     
 })
 
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', isAuthenticated, async (req, res) => {
     const question = await Question.findByPk(req.params.id)
     res.render('question/edit', { question })
 })
 
-router.post('/:id', async (req, res) => {
+router.post('/:id', isAuthenticated, async (req, res) => {
     const { name } = req.body
     const { id } = req.params
     const question = await Question.update({ name }, {
@@ -55,7 +56,7 @@ router.post('/:id', async (req, res) => {
     }
 })
 
-router.get('/:id/delete', async (req, res) => {
+router.get('/:id/delete', isAuthenticated, async (req, res) => {
     const { id } = req.params
     const deleted = await Question.destroy({
         where: { id }

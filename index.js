@@ -5,6 +5,7 @@ const questionsCtrl = require('./src/controllers/questions')
 const choicesCtrl = require('./src/controllers/choices')
 const authCtrl = require('./src/controllers/auth')
 const session = require('express-session')
+const res = require('express/lib/response')
 app.use(session({
     saveUninitialized: false,
     secret: 'keyboard cat',
@@ -15,10 +16,9 @@ app.set('views', __dirname + '/src/views') //current directory that this file is
 // set view engine to twig
 app.set('view engine', 'twig')
 
-app.get('/', async (request, response) => {
-    console.log('access token', request.session.access_token)
-    response.render('home/home')
-})
+app.get(
+    '/', (request, response, next) => { response.render('home/home')}
+)
 
 //mount router at certain endpoint. 
 app.use('/quizzes', quizzesCtrl)
