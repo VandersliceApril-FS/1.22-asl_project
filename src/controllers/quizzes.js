@@ -10,7 +10,7 @@ router.get('/', isAuthenticated, async (req, res) => {
     if (req.headers.accept.indexOf('/json') > -1) {
         res.json(quizzes)
     } else {
-        res.render('quiz/index', { quizzes }) // pass the index view
+        res.render('quiz/index', { quizzes })
     }
 })
 router.get('/new', isAuthenticated,  (req, res) => {

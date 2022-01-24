@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express()
+const { Quiz } = require('./src/models')
 const quizzesCtrl = require('./src/controllers/quizzes')
 const questionsCtrl = require('./src/controllers/questions')
 const choicesCtrl = require('./src/controllers/choices')
 const authCtrl = require('./src/controllers/auth')
-
+const bodyParser = require('body-parser')
 const session = require('express-session')
 app.use(session({
     saveUninitialized: false,
@@ -12,6 +13,7 @@ app.use(session({
     cookie: { maxAge: 60000 }
 }))
 
+app.use(bodyParser.urlencoded({ etended: false }))
 app.set('views', __dirname + '/src/views')
 app.set('view engine', 'twig')
 
