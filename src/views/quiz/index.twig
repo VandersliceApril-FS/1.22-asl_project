@@ -1,16 +1,5 @@
 {% extends "layouts/_default.twig" %}
 {% block main_content %}
-    {# <ul>
-        {% for quiz in quizzes %}
-            <li>
-                {{ quiz.name }} - 
-                <a href="/quizzes/{{ quiz.id }}/edit">Edit</a>
-                |
-                <a href="/quizzes/{{ quiz.id }}/delete">Delete</a>
-            </li>
-        {% endfor %}
-    </ul> #}
-    
     <div id="list"></div>
     <p>
         <a href="/quizzes/new">Create New Quiz</a>
@@ -18,8 +7,6 @@
 {% endblock %}
 
 {% block reactjs %}
-    <!-- Load in React DOM and libraries we need to add React to project without going through compiler. -->
-    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="/views/list.js"></script>

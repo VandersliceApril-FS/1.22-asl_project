@@ -1,6 +1,6 @@
 // create three states. We are using React without JSX
 // three different states: loading, if api returned error, displaying models from api
-class List extends React.Component { // resused across three different apis. will be different for each
+class List extends React.Component { // reused across three different apis. will be different for each
     constructor(props) {
         super(props);
         this.state = {
@@ -9,7 +9,7 @@ class List extends React.Component { // resused across three different apis. wil
             items: [] // display state
         }
     }
-    // happens the moment component is create dna mounted to dom
+    // happens the moment component is created and mounted to dom
     componentDidMount() {
         fetch(
             `/${this.props.model}`, // creating a prop called model, passed into component, tells it which one to hit
@@ -49,7 +49,3 @@ class List extends React.Component { // resused across three different apis. wil
         }
     }
 }
-
-// replace html element with component
-// const domContainer = document.querySelector('ul#list')
-// ReactDOM.render(React.createElement('List'), domContainer)
