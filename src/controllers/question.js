@@ -4,7 +4,7 @@ const { Question, Quiz } = require('../models')
 
 questionCtlr.get('/', async (req, res) => {
     const questions = await Question.findAll({
-        include: Quiz
+        // include: Quiz
     })
     res.json(questions)
 })
