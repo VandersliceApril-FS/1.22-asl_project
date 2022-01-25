@@ -1,69 +1,39 @@
 const express = require('express')
-const router = express.Router()
-const { Choice } = require('../models')
-const bodyParser = require('body-parser')
-router.use(bodyParser.urlencoded({ extended: false }))
-const { isAuthenticated } = require('../middlewares/auth')
+const choiceRouter = express.Router()
+const { Choice, Question } = require('../models')
 
-router.get('/', isAuthenticated, async (req, res) => {
-    const choices = await Choice.findAll()
-    if (req.headers.accept.indexOf('/json') > -1) {
-        res.json(choices)
-    } else {
-        res.render('choice/index', { choices })
-    }
-})
-router.get('/new', isAuthenticated, (req, res) => {
-    res.render('choice/create')
-})
-
-router.post('/', isAuthenticated, async (req, res) => {
-    const { name } = req.body
-    const choice = await Choice.create({ name })
-    if (req.headers.accept.indexOf('/json') > -1) {
-        res.json(choice)
-    } else {
-        res.redirect('/choices/' + choice.id)
-    }
-})
-
-router.get('/:id', isAuthenticated, async (req, res) => {
-    const choice = await Choice.findByPk(req.params.id)
-    if (req.headers.accept.indexOf('/json') > -1) {
-        res.json(choice)
-    } else {
-        res.render('choice/show', { choice })
-    }
-})
-
-router.get('/:id/edit', isAuthenticated, async (req, res) => {
-    const choice = await Choice.findByPk(req.params.id)
-    res.render('choice/edit', { choice })
-})
-
-router.post('/:id', isAuthenticated, async (req, res) => {
-    const { name } = req.body
-    const { id } = req.params
-    const choice = await Choice.update({ name }, {
-        where: { id }
+choiceRouter.get('/', async (req, res) => {
+    const choices = await Choice.findAll({
+        include: Question
     })
-    if (req.headers.accept.indexOf('/json') > -1) {
-        res.json(choice)
-    } else {
-        res.redirect('/choices/' + id)
-    }
+    res.json(choices)    
 })
 
-router.get('/:id/delete', isAuthenticated, async (req, res) => {
-    const { id } = req.params
+choiceRouter.post('/', async (req, res) => {
+    const choice = await Choice.create( req.body )
+    res.json(choice)
+})
+
+choiceRouter.get('/:id', async (req, res) => {
+    const choice = await Choice.findByPk(Number(req.params.id), {
+        include: Question
+    })
+    res.json(choice.Quiz)  
+})
+
+choiceRouter.post('/:id', async (req, res) => {
+    let choice = await Choice.update(req.body, {
+        where: { id: Number(req.params.id) }
+    })
+    let choice = await Choice.findByPk( Number(req.params.id))
+    res.json(choice)
+})
+
+choiceRouter.delete('/:id', async (req, res) => {
     const deleted = await Choice.destroy({
-        where: { id }
+        where: { id: Number(req.params.id) }
     })
-    if (req.headers.accept.indexOf('/json') > -1) {
-        res.json({'success': true})
-    } else {
-        res.redirect('/choices')
-    }
+    res.json(deleted)
 })
 
 module.exports = router

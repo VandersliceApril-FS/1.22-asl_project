@@ -4,7 +4,6 @@ const axios = require('axios')
 const queryString = require('querystring')
 const { LoginToken } = require('../models/index')
 
-
 const client_id = "0bb5026e643acb2bfbf1"
 const client_secret = "96aa0c8ffa5b5e3f572306db55744a3a270673ca"
 
@@ -36,6 +35,5 @@ authRouter.get('/token', async (req, res) => {
         res.json({ token: false })
     }
 })
-
 
 module.exports = authRouter
