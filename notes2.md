@@ -1,8 +1,21 @@
 # Commands
 
 curl -X POST --data "name=April's Quiz" http://localhost:3000/quizzes
-curl -X POST --data '{"Questions":["What color are strawberries?", "What color is the sky?", "What color is grass?"]}' http://localhost:3000/quizzes/20
+
+
+**connect a specific question to a quiz by adding a quiz id**
 curl -X POST --data "quizId=20" http://localhost:3000/questions/10
+
+
+**CREATE new choices**
+curl -X POST --data "label=Washington D.C" http://localhost:3000/choices
+curl -X POST --data "label=Dallas" http://localhost:3000/choices
+
+**connect choices to questions**
+curl -X POST --data "questionId=10" http://localhost:3000/choices/
+
+**DELETE choice**
+curl -X DELETE http://localhost:3000/choices/18
 
 
 
