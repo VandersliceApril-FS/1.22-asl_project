@@ -12,18 +12,22 @@ import Login from './Login'
 import Quiz from './Quiz'
 import queryString from 'querystring'
 
-function App() {
+const App = () => {
   const [jwt, setJwt] = useState('')
   useEffect(() => {
     async function fetchJwt() {
       const params = queryString.parse(window.location.search.replace(/^\?/, ''))
+
+      console.log(`params: ${params}. params.token: ${params.token}`)
+
       localStorage.token = params.token
       const response = await axios('http://localhost:3000/auth/token/', {
-        header: {
+        headers: {
           token: localStorage.token
         }
       })
       setJwt(response.data.token)
+      console.log(response.data.token)
     }
     fetchJwt()
   }, [])

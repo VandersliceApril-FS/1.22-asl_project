@@ -25,7 +25,7 @@ choiceRouter.post('/:id', async (req, res) => {
     let choice = await Choice.update(req.body, {
         where: { id: Number(req.params.id) }
     })
-    let choice = await Choice.findByPk( Number(req.params.id))
+    // let choice = await Choice.findByPk( Number(req.params.id))
     res.json(choice)
 })
 
@@ -36,4 +36,4 @@ choiceRouter.delete('/:id', async (req, res) => {
     res.json(deleted)
 })
 
-module.exports = router
+module.exports = choiceRouter

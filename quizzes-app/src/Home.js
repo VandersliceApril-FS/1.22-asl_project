@@ -7,7 +7,7 @@ import queryString from 'querystring'
 function Home() {
 	const [quizzes, setQuizzes] = useState([])
 	useEffect(() => {
-		async function fetchQuizes() {
+		async function fetchQuizzes() {
 			const params = queryString.parse(window.location.search.replace(/^\?/, ''))
 			const response = await axios('http://localhost:3000/quizzes', {
         headers: {
@@ -16,11 +16,11 @@ function Home() {
       })
 	  		setQuizzes(response.data)
 		}
-		fetchQuizes()
+		fetchQuizzes()
 	}, []);
 	return (
 		<div>
-			<h1>Take a Quiz!</h1>
+			<h1>Take a Quiz</h1>
 			<p>Click on any quiz listed below to take one.</p>
 			<ul>
 				{quizzes.map(q => (

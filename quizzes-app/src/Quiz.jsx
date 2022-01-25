@@ -15,7 +15,7 @@ const Quiz = () => {
 	  		setQuiz(q.data)
 		}
 		fetchQuiz()
-	}, []);
+	}, [params]);
 	return (
 		<form id="quiz">
 			<h1>{quiz.name} Quiz</h1>
