@@ -1,14 +1,14 @@
 const express = require('express')
 const quizCtlr = express.Router()
-const { Quiz, Question, Choice } = require('../models/index')
+const { Quiz, Question, Choice } = require('../models')
 const { quizIsValid } = require('../middlewares/forms')
-// const isAuthenticated = require('../middlewares/auth')
+const isAuthenticated = require('../middlewares/auth')
 
 quizCtlr.get('/', async (req, res) => {
-    const quizzes = await  Quiz.findAll({
-        include: [
-            {model: Question, include: [Choice] }
-        ]
+    const quizzes = await Quiz.findAll({
+        // include: [
+        //     {model: Question, include: [Choice] }
+        // ]
     })
     res.json(quizzes)
 })
@@ -25,7 +25,7 @@ quizCtlr.post('/', quizIsValid, async (req, res) => {
 })
 
 quizCtlr.get('/new', (req, res) => {
-    res.render('quizzes/create')
+    res.render('quiz/create')
 })
 
 quizCtlr.get('/:id', async (req, res) => {
@@ -43,9 +43,6 @@ quizCtlr.post('/:id', quizIsValid, async(req, res) => {
             where: { id: Number(req.params.id) }
         })
     } 
-    // else {
-    //     let quiz = await Quiz.findByPk( Number(req.params.id))
-    // }
     res.render('quizzes/edit', { quiz, errors: req.errors })
 })
 
@@ -53,7 +50,6 @@ quizCtlr.get('/:id/edit', async (req, res) => {
     let quiz = await Quiz.update(req.body, {
         where: { id: Number(req.params.id) }
     })
-    // let quiz = await Quiz.findByPk( Number(req.params.id))
     res.render('quizzes/edit', { quiz })
 })
 
