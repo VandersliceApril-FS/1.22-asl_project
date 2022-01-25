@@ -29,8 +29,8 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ etended: false }))
 
 app.use('/quizzes', isAuthenticated, quizRouter)
-app.use('/questions', questionRouter)
-app.use('/choices', choiceRouter)
+app.use('/questions', isAuthenticated, questionRouter)
+app.use('/choices', isAuthenticated, choiceRouter)
 app.use('/auth', authRouter)
 app.use('/', pageRouter)
 

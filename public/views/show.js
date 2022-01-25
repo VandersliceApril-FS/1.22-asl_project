@@ -35,12 +35,8 @@ class Show extends React.Component {
         } else if(!isLoaded) {
             return React.createElement('div', null, 'Loading...')
         } else {
-            return React.createElement('h1', null, `${item}`,
-                // React.createElement('p', null, `${item.id}`),
-                // React.createElement('p', null, `${item.weight}%`),
-                // React.createElement('h1', null, `${item.updateAt}`),
-                // React.createElement('h1', null, `${item.createdAt}`)
-            )
+            // return the successfully created item
+            return React.createElement('h1', null, `${item}`)
         }
     }
 
