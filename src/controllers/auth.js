@@ -1,29 +1,41 @@
-const { response } = require('express')
 const express = require('express')
-const router = express.Router()
-const request = require('request')
-const querystring = require('querystring')
+const authRouter = express.Router()
+const axios = require('axios')
+const queryString = require('querystring')
+const { LoginToken } = require('../models/index')
 
-router.get('/login', (req, res) => {
+
+const client_id = "0bb5026e643acb2bfbf1"
+const client_secret = "96aa0c8ffa5b5e3f572306db55744a3a270673ca"
+
+authRouter.get("/login", (req, res) => {
     res.render('auth/login')
 })
 
-router.get('/callback', async (req, res) => {
+authRouter.get('/callback', async (req, res) => {
     const { code } = req.query
-    // console.log('code', code)
-    await request({
-        uri: 'https://github.com/login/oauth/access_token',
-        qs: {
-            client_id: "0bb5026e643acb2bfbf1",
-            client_secret: "96aa0c8ffa5b5e3f572306db55744a3a270673ca",
-            code
-        }
-    }, async (error, response, body) => {
-        // console.log(body)
-        const { access_token } = querystring.parse(body)
-        req.session.access_token = access_token
-        res.redirect('/')
+    const response = await axios.post('https://github.com/login/oauth/access_token', {
+        code, 
+        client_id,
+        client_secret
     })
+    const { access_token } = queryString.parse(response.data)
+    req.session.access_token = access_token
+    const loginToken = await LoginToken.create({ token: access_token })
+    res.redirect('http://localhost:3001?token=' + access_token)
 })
 
-module.exports = router
+authRouter.get('/token', async (req, res) => {
+    const token = await LoginToken.findOne({where: {
+        token: req.headers.token
+    }})
+    if (token) {
+        req.session.access_token = req.headers.token
+        res.json(token)
+    } else {
+        res.json({ token: false })
+    }
+})
+
+
+module.exports = authRouter

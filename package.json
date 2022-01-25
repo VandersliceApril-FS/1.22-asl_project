@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -e twig,js --watch src index.js"
+    "dev": "(cd quizzes-app && npm run start) & nodemon -e js,twig --watch index.js --watch src"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.25.0",
     "body-parser": "^1.19.1",
     "express": "^4.17.2",
     "express-session": "^1.17.2",

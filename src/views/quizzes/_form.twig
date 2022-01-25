@@ -7,8 +7,10 @@
         <label for="name">Name: </label>
         {% if quiz %}
             <input type="text" name="name" value="{{ quiz.name }}" />
+            <input type="text" name="weight" value={{ quiz.weight }}>
         {% else %}
-            <input type="text" name="name" />
+            <input type="text" name="name" placeholder="Enter quiz name" />
+            <input type="text" name="weight" placeholder="Enter weight"> 
         {% endif %}
         
     </div>

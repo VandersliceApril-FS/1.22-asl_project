@@ -1,29 +1,37 @@
 const express = require('express')
 const app = express()
-const { Quiz } = require('./src/models')
-const quizzesCtrl = require('./src/controllers/quizzes')
-const questionsCtrl = require('./src/controllers/questions')
-const choicesCtrl = require('./src/controllers/choices')
-const authCtrl = require('./src/controllers/auth')
 const bodyParser = require('body-parser')
-const session = require('express-session')
+const pageRouter = require('./src/controllers/page')
+const quizRouter = require('./src/controllers/quiz')
+const questionRouter = require('./src/controllers/question')
+const choiceRouter = require('./src/controllers/choice')
+const authRouter = require('./src/controllers/auth')
+const cors = require('cors')
+let session = require('express-session')
+const isAuthenticated = require('./src/middlewares/auth')
 app.use(session({
     saveUninitialized: false,
     secret: 'keyboard cat',
     cookie: { maxAge: 60000 }
 }))
 
-app.use(bodyParser.urlencoded({ etended: false }))
 app.set('views', __dirname + '/src/views')
 app.set('view engine', 'twig')
+app.use(cors({
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204,
+    "credentials": true,
+    "allowCrossDomain": true
+}))
 
-app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ etended: false }))
 
-app.get('/', (request, response, next) => { response.render('home/home')})
-
-app.use('/quizzes', quizzesCtrl)
-app.use('/questions', questionsCtrl)
-app.use('/choices', choicesCtrl)
-app.use('/auth', authCtrl)
+app.use('/quizzes', isAuthenticated, quizRouter)
+app.use('/questions', isAuthenticated, questionRouter)
+app.use('/choices', isAuthenticated, choiceRouter)
+app.use('/auth', authRouter)
+app.use('/', pageRouter)
 
 app.listen(3000)

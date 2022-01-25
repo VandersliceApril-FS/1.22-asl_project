@@ -1,12 +1,20 @@
 {% extends "layouts/_default.twig" %}
 {% block main_content %}
-    <div id="list"></div>
-    <p>
-        <a href="/quizzes/new">Create New Quiz</a>
-    </p>
+    <h1>All Quizzes</h1>
+    <ul>
+        {% for q in quizzes %}
+            <li>
+                <a href="/quizzes/{{ q.id }}">{{ q.name }}</a> - 
+                <a href="/quizzes/{{ q.id }}/edit">Edit</a> | <a href="/quizzes/{{ q.id }}/delete">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <a href="/quizzes/new">Create New Quiz</a>
+    
 {% endblock %}
 
-{% block reactjs %}
+{# {% block reactjs %}
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="/views/list.js"></script>
@@ -15,4 +23,4 @@
         const domContainer = document.querySelector('div#list')
         ReactDOM.render(React.createElement(List, { model: 'quizzes' }), domContainer)
     </script>
-{% endblock %}
+{% endblock %} #}
