@@ -4,7 +4,7 @@ const { Question, Quiz } = require('../models')
 
 questionCtlr.get('/', async (req, res) => {
     const questions = await Question.findAll({
-        // include: Quiz
+        include: Quiz
     })
     res.json(questions)
 })
@@ -28,6 +28,7 @@ questionCtlr.post('/:id', async (req, res) => {
     let question = await Question.update( req.body, {
         where: { id: Number(req.params.id) }
     })
+    // instructor repo included another definition of question, but the initil one, Question.update() makes more sense here
     // const question = await Question.findByPk(Number(req.params.id))
     res.json(question)
 })

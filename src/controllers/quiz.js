@@ -6,9 +6,9 @@ const isAuthenticated = require('../middlewares/auth')
 
 quizCtlr.get('/', async (req, res) => {
     const quizzes = await Quiz.findAll({
-        // include: [
-        //     {model: Question, include: [Choice] }
-        // ]
+        include: [
+            {model: Question, include: [Choice] }
+        ]
     })
     res.json(quizzes)
 })
@@ -19,20 +19,20 @@ quizCtlr.post('/', quizIsValid, async (req, res) => {
             errors: req.errors
         })
     } else {
-        const quiz = await Quiz.create( req.body )
+        const quiz = await Quiz.create(req.body)
         res.redirect('/quizzes')
     }
 })
 
 quizCtlr.get('/new', (req, res) => {
-    res.render('quiz/create')
+    res.render('quizzes/create')
 })
 
 quizCtlr.get('/:id', async (req, res) => {
     const quiz = await Quiz.findByPk( Number(req.params.id), {
-        // include: [
-        //     {model: Question, include: [Choice] }
-        // ]
+        include: [
+            {model: Question, include: [Choice] }
+        ]
     })
     res.json(quiz)
 })
@@ -50,14 +50,24 @@ quizCtlr.get('/:id/edit', async (req, res) => {
     let quiz = await Quiz.update(req.body, {
         where: { id: Number(req.params.id) }
     })
+    // instructor repo included an extra definition of quiz
+    // let quiz = await Quiz.findByPk( Number(req.params.id) )
     res.render('quizzes/edit', { quiz })
 })
 
-quizCtlr.get('/:id/delete', async (req, res) => {
-    const deleted = await Quiz.destroy({ 
+quizCtlr.delete('/:id', async(req, res) => {
+    const deleted = await Question.destroy({
         where: { id: Number(req.params.id) }
     })
-    res.redirect('/quizzes')
+    res.json(deleted)
 })
+
+// // original: 
+// quizCtlr.get('/:id/delete', async (req, res) => {
+//     const deleted = await Quiz.destroy({ 
+//         where: { id: Number(req.params.id) }
+//     })
+//     res.redirect('/quizzes')
+// })
 
 module.exports = quizCtlr

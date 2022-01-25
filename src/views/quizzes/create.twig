@@ -10,5 +10,6 @@
          {% endfor %}
       </ul>
    {% endif %}
-   {% include "quiz/_form.twig" with { quiz: false } %}
+   {% include "quizzes/_form.twig" %}
+   {# original line 13: {% include "quizzes/_form.twig" with { quiz: false } %} #}
 {% endblock %}

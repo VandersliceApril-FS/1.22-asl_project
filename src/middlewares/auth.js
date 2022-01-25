@@ -1,4 +1,4 @@
-const { LoginToken } = require('../models/index')
+const { LoginToken } = require('../models')
 
 const isAuthenticated = async (req, res, next) => {
     if (typeof req.headers.token !== "undefined") {

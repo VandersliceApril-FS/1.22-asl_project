@@ -1,18 +1,25 @@
+{% extends 'layouts/_default.twig' %}
+{% block title %}Show a list of Quizzes{% endblock %}
+
+{% block main_content %}
+	<h1>List of all Quizzes</h1>
+	<ul>
+		{% for q in quizzes %}
+		<li>
+			<a href="/quizzes/{{ q.id }}">{{ q.name }}</a> - 
+			<a href="/quizzes/{{ q.id }}/edit">Edit</a> | <a href="/quizzes/{{ q.id }}/delete">Delete</a>
+		</li>
+		{% endfor %}
+	</ul>
+	<a href="/quizzes/new">Create a new Quiz</a>
+{% endblock %}
+
+
+{# Original:
 {% extends "layouts/_default.twig" %}
 {% block main_content %}
     <div id="list"></div>
     <p>
         <a href="/quiz/new">Create New Quiz</a>
     </p>
-{% endblock %}
-
-{% block reactjs %}
-    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-    <script src="/views/list.js"></script>
-    <script type="text/javascript">
-        // append to DOM/replace html element with the component itself
-        const domContainer = document.querySelector('div#list')
-        ReactDOM.render(React.createElement(List, { model: 'quizzes' }), domContainer)
-    </script>
-{% endblock %}
+{% endblock %} #}

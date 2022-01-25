@@ -1,23 +1,14 @@
 {% extends "layouts/_default.twig" %}
 {% block main_content %}
-    {# <h1>View Single Quiz: {{ quiz.name }}</h1>
+    <h1>Viewing Single Quiz: {{ quiz.name }}</h1>
     <ul>
         <li><strong>ID: </strong>{{ quiz.id }}</li>
+        <li><strong>Weight: </strong>{{ quiz.weight }}</li>
         <li><strong>Created At: </strong>{{ quiz.createdAt }}</li>
         <li><strong>Updated At: </strong>{{ quiz.updatedAt }}</li>
-    </ul> #}
-    <div id="show"></div>
+    </ul>
+
     <p>
         <a href="/quizzes/{{ quiz.id }}/edit">Edit</a> | <a href="/quizzes/{{ quiz.id }}/delete">Delete</a>
     </p>
-{% endblock %}
-
-{% block reactjs %}
-    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-    <script src='/views/show.js'></script>
-    <script type='text/javascript'>
-        const domContainer = document.querySelector('div#show')
-        ReactDOM.render(React.createElement(Show, { model: 'quizzes/:id' }), domContainer)
-    </script>
 {% endblock %}

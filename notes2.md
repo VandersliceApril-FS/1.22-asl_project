@@ -14,3 +14,23 @@ Questions
  * how are sites running on different ports
  * how is the starting page localhost:3001
  
+
+ [Adding a column](https://dev.to/nedsoft/add-new-fields-to-existing-sequelize-migration-3527)
+ [More docs on migration/adding column](https://sequelize.org/v3/docs/migrations/)
+ 1. create the migration file for the change
+ `npx sequelize-cli migration:generate --name migration_file_name`
+
+ 2. create the changes in the migration file
+
+ queryInterface.addColumn(
+  'nameOfAnExistingTable',
+  'nameOfTheNewAttribute',
+  {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
+)
+
+3. Update the model with the new column
+4. npx sequelize-cli db:migrate
+5. Sidenote: I edited the original create-question.js migration with the new field
