@@ -30,9 +30,9 @@ quizCtlr.get('/new', (req, res) => {
 
 quizCtlr.get('/:id', async (req, res) => {
     const quiz = await Quiz.findByPk( Number(req.params.id), {
-        include: [
-            {model: Question, include: [Choice] }
-        ]
+        // include: [
+        //     {model: Question, include: [Choice] }
+        // ]
     })
     res.json(quiz)
 })
