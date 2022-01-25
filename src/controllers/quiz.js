@@ -13,15 +13,15 @@ quizCtlr.get('/', async (req, res) => {
     res.json(quizzes)
 })
 
-quizCtlr.post('/', quizIsValid, async (req, res) => {
-    if (req.errors.length > 0) {
-        res.render('quizzes/create', {
-            errors: req.errors
-        })
-    } else {
+quizCtlr.post('/', async (req, res) => {
+    // if (req.errors.length > 0) {
+    //     res.render('quizzes/create', {
+    //         errors: req.errors
+    //     })
+    // } else {
         const quiz = await Quiz.create(req.body)
         res.redirect('/quizzes')
-    }
+    // }
 })
 
 quizCtlr.get('/new', (req, res) => {
@@ -37,12 +37,12 @@ quizCtlr.get('/:id', async (req, res) => {
     res.json(quiz)
 })
 
-quizCtlr.post('/:id', quizIsValid, async(req, res) => {
-    if(req.errors.length === 0) {
+quizCtlr.post('/:id', async(req, res) => {
+    // if(req.errors.length === 0) {
         let quiz = await Quiz.update(req.body, {
             where: { id: Number(req.params.id) }
         })
-    } 
+    // } 
     res.render('quizzes/edit', { quiz, errors: req.errors })
 })
 

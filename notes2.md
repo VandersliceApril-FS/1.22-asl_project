@@ -1,5 +1,11 @@
 # Commands
 
+curl -X POST --data "name=April's Quiz" http://localhost:3000/quizzes
+curl -X POST --data '{"Questions":["What color are strawberries?", "What color is the sky?", "What color is grass?"]}' http://localhost:3000/quizzes/20
+curl -X POST --data "quizId=20" http://localhost:3000/questions/10
+
+
+
 generate new login token model
 -------------------------------
 `npx sequelize-cli model:generate --name=LoginToken --attributes=token:string`
