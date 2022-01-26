@@ -40,4 +40,9 @@ authRouter.get('/token', async (req, res) => {
     }
 })
 
+authRouter.get('/logout', async (req, res) => {
+    req.session.access_token = null
+    res.redirect('http://localhost:3001')
+})
+
 module.exports = authRouter
