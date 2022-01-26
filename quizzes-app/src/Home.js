@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import queryString from 'querystring'
+import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
-
-
 
 function Home() {
 	const [quizzes, setQuizzes] = useState([])
@@ -24,10 +22,10 @@ function Home() {
 		fetchQuizzes()
 	}, []);
 	return (
-		<div>
+		<Container>
 			<h1>Take a Quiz</h1>
 			<p>Click on any quiz listed below to take one.</p>
-			<Row xs={1} md={2} className="g-4" >
+			<Row xs={1} md={3} lg={4} className="g-3" >
 					{quizzes.map(q => (
 						<Col>
 							<Link 
@@ -37,7 +35,7 @@ function Home() {
 									color: "black"
 								}}
 							>
-								<Card style={{ width: '18rem' }}>
+								<Card style={{ width: '18rem', height: '10rem' }}>
 									<Card.Body>
 									<Card.Title>
 										{q.name}
@@ -54,7 +52,7 @@ function Home() {
 						</Col>
 					))}
 			</Row>
-		</div>
+		</Container>
 	)
 }
 
