@@ -37,13 +37,15 @@ const App = () => {
   }
 
   return (
-    <Router>
-      <div className="App">
-        <Navigation isLoggedIn={jwt ? true : false } />
-        <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route exact path='/quizzes/:id' element={<Quiz />} />
-        </Routes>
+    <Router>  
+      <Navigation isLoggedIn={jwt ? true : false } />
+      <div className="app-container">
+        <div className="main-content">
+          <Routes>
+            <Route exact path='/' element={<Home />} />
+            <Route exact path='/quizzes/:id' element={<Quiz />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );

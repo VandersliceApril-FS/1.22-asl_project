@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import queryString from 'querystring'
+import ListGroup from 'react-bootstrap/ListGroup'
+
 
 
 function Home() {
@@ -22,13 +24,13 @@ function Home() {
 		<div>
 			<h1>Take a Quiz</h1>
 			<p>Click on any quiz listed below to take one.</p>
-			<ul>
+			<ListGroup>
 				{quizzes.map(q => (
-					<li>
+					<ListGroup.Item>
 						<Link to={'/quizzes/' + q.id}>{q.name}</Link>
-					</li>
+					</ListGroup.Item>
 				))}
-			</ul>
+			</ListGroup>
 		</div>
 	)
 }
