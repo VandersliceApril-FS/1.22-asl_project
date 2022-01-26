@@ -27,12 +27,8 @@ module.exports = {
       updatedAt: new Date()
     },
   ], {}),
+
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('Quizzes', {[Sequelize.Op.or]: [
-      {name: 'Database Abstraction Layers'}, 
-      {name: 'Object Relational Mappers'},
-      {name: 'Using Migrations'},
-      {name: 'RESTful Design Patters'},
-    ]});
+    return queryInterface.bulkDelete('Quizzes', null, {});
   }
 };

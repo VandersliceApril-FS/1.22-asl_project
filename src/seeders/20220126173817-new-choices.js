@@ -2,121 +2,123 @@
 
 module.exports = {
   up: async (queryInterface) => queryInterface.bulkInsert('Choices', [
-    // quizId: 22
-      //questionId: 35
+    // quizId: 38
+      //questionId: 99
     {
       label: 'DBAL Design Patterns',
-      questionId: 35,
+      questionId: 99,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       label: 'ORM',
-      questionId: 35,
+      questionId: 99,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       label: 'Models & Migrations',
-      questionId: 35,
+      questionId: 99,
       createdAt: new Date(),
       updatedAt: new Date()
     },
-     // quizId: 22
-      //questionId: 36
+     // quizId: 38
+      //questionId: 100
     {
       label: 'Models',
-      questionId: 36,
+      questionId: 100,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       label: 'Migrations',
-      questionId: 36,
+      questionId: 100,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       label: 'Both',
-      questionId: 36,
+      questionId: 100,
       createdAt: new Date(),
       updatedAt: new Date()
     },
-     // quizId: 22
-      //questionId: 37
+     // quizId: 38
+      //questionId: 101
     {
       label: 'Mapping',
-      questionId: 37,
+      questionId: 101,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       label: 'Mimosas',
-      questionId: 37,
+      questionId: 101,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       label: 'Model',
-      questionId: 37,
+      questionId: 101,
       createdAt: new Date(),
       updatedAt: new Date()
     },
-     // quizId: 22
-      //questionId: 38
+     // quizId: 38
+      //questionId: 102
     {
       label: 'Object Relational Mappers',
-      questionId: 38,
+      questionId: 102,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       label: 'Object Relation Models',
-      questionId: 38,
+      questionId: 102,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       label: 'Object Request Manipulation',
-      questionId: 38,
+      questionId: 102,
       createdAt: new Date(),
       updatedAt: new Date()
     },
-     // quizId: 23
-      //questionId: 39
+     // quizId: 39
+      //questionId: 103
     {
       label: 'RESTful API',
-      questionId: 39,
+      questionId: 103,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       label: 'Resting',
-      questionId: 39,
+      questionId: 103,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       label: 'Rusting',
-      questionId: 39,
+      questionId: 103,
       createdAt: new Date(),
       updatedAt: new Date()
     },
+    // quizId: 39
+      //questionId: 104
     {
       label: 'NodeJS ORM',
-      questionId: 40,
+      questionId: 104,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       label: 'Sequelize',
-      questionId: 40,
+      questionId: 104,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       label: 'NodeJS ORM: Sequelize',
-      questionId: 40,
+      questionId: 104,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -125,12 +127,12 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
    await queryInterface.bulkDelete('Choices', {[Sequelize.Op.or]: [
-     {questionId: 35},
-     {questionId: 36},
-     {questionId: 37},
-     {questionId: 38},
-     {questionId: 39},
-     {questionId: 40},
+     {questionId: 99},
+     {questionId: 100},
+     {questionId: 101},
+     {questionId: 102},
+     {questionId: 103},
+     {questionId: 104},
    ]})
   }
 };

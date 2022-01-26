@@ -2,110 +2,113 @@
 
 module.exports = {
   up: async (queryInterface) => queryInterface.bulkInsert('Questions', [
-    // Quiz 1
+    // Quiz 38
     {
-      question: 'Question one?',
-      quizId: 22,
+      question: 'Choose the best one:',
+      quizId: 38,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      question: 'Question two?',
-      quizId: 22,
+      question: 'Which is required?',
+      quizId: 38,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      question: 'Question three?',
-      quizId: 22,
+      question: 'What is the M in the MVC acronym?',
+      quizId: 38,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      question: 'Question four?',
-      quizId: 22,
+      question: 'What does ORM stand for?',
+      quizId: 38,
       createdAt: new Date(),
       updatedAt: new Date()
     },
-    // Quiz 2
+    // Quiz 39
     {
-      question: 'Question one?',
-      quizId: 23,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      question: 'Question two?',
-      quizId: 23,
+      question: 'Which of these is actually relates to this class?',
+      quizId: 39,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      question: 'Question three?',
-      quizId: 23,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      question: 'Question four?',
-      quizId: 23,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    // Quiz 3
-    {
-      question: 'Question one?',
-      quizId: 24,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      question: 'Question two?',
-      quizId: 24,
+      question: 'Which ORM did we use?',
+      quizId: 39,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       question: 'Question three?',
-      quizId: 24,
+      quizId: 39,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       question: 'Question four?',
-      quizId: 24,
+      quizId: 39,
       createdAt: new Date(),
       updatedAt: new Date()
     },
-    // Quiz 4
+    // Quiz 40
     {
       question: 'Question one?',
-      quizId: 25,
+      quizId: 40,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       question: 'Question two?',
-      quizId: 25,
+      quizId: 40,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       question: 'Question three?',
-      quizId: 25,
+      quizId: 40,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       question: 'Question four?',
-      quizId: 25,
+      quizId: 40,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // Quiz 41
+    {
+      question: 'Question one?',
+      quizId: 41,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      question: 'Question two?',
+      quizId: 41,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      question: 'Question three?',
+      quizId: 41,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      question: 'Question four?',
+      quizId: 41,
       createdAt: new Date(),
       updatedAt: new Date()
     },
   ], {}),
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Quizzes', null, {});
+    await queryInterface.bulkDelete('Quizzes', {[Sequelize.Op.or]: [
+      {quizId: 38}, 
+      {quizId: 39},
+      {quizId: 40},
+      {quizId: 41},
+    ]});
   }
 };
-
-// since the questions are connected to quizzes, I am unable to update them at this point --at least not from here. I can update them manually int he table? But that would make things messy.
