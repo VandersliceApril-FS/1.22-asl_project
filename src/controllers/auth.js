@@ -40,9 +40,19 @@ authRouter.get('/token', async (req, res) => {
     }
 })
 
-authRouter.get('/logout', async (req, res) => {
-    req.session.access_token = null
-    res.redirect('http://localhost:3001')
+authRouter.delete('/logout', async (req, res) => {
+    const deleted = LoginToken.findOne({
+        where: {
+            token: req.headers.token
+        }
+    })
+    console.log(`deleted token: ${token}`)
+    console.log(`session before: ${req.session}`)
+    req.session.destroy()
+    console.log(`session after: ${req.session}`)
+    
+    res.redirect('/')
+    
 })
 
 module.exports = authRouter

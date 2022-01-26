@@ -7,6 +7,18 @@ import Login from './Login'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
+const styles = {
+    loginContainer: {
+        display: 'flex',
+        width: '30rem',
+        height: '30rem',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '1rem',
+    }
+}
+
 function Home({ isLoggedIn }) {
 	const [quizzes, setQuizzes] = useState([])
 	useEffect(() => {
@@ -24,10 +36,14 @@ function Home({ isLoggedIn }) {
 	}, []);
 	
 	 if (!isLoggedIn) {
-		return <Login />;
+		return (
+		<section style={styles.loginContainer}>
+			<Login />
+		</section>
+		)
 	}
 	return (
-		<section>
+		<section className="main-content">
 			<h1>Quizzes</h1>
 			<Row xs={1} sm={2} md={3} lg={4} className="g-3" >
 					{quizzes.map(q => (

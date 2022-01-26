@@ -1,4 +1,4 @@
-import './App.css'
+
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import {
@@ -11,6 +11,28 @@ import Home from './pages/Home'
 import Logout from './pages/Logout'
 import Quiz from './Quiz'
 import queryString from 'querystring'
+
+const styles = {
+  appContainer: {
+    height: '100vh',
+    // margin: '0 auto',
+    // display: 'flex',
+    // flexDirection: 'column',
+    // justifyContent: 'center',
+    // alignItems: 'center'
+  },
+  mainContainer: {
+      display: 'flex',
+      width: '100%',
+      
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '1rem',
+
+  }
+}
+
 
 function App() {
   const [jwt, setJwt] = useState('')
@@ -35,9 +57,9 @@ function App() {
 
   return (
     <Router>  
-      <div className="app-container">
+      <div style={styles.appContainer}>
         <Navigation isLoggedIn={jwt ? true : false} setJwt/>
-        <main className="main-content">
+        <main style={styles.mainContainer}>
           <Routes>
             <Route exact path='/' element={<Home isLoggedIn={jwt ? true : false} />} />
             <Route exact path='/quizzes/:id' element={<Quiz />} />

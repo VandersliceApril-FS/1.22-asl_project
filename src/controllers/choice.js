@@ -6,7 +6,12 @@ choiceRouter.get('/', async (req, res) => {
     const choices = await Choice.findAll({
         include: Question
     })
-    res.json(choices)    
+    if(req.headers.accept.indexOf('/json') > -1) {
+        res.json(choices)
+    } else {
+        res.render('xchoices/index', { choices })
+    }
+    
 })
 
 choiceRouter.post('/', async (req, res) => {

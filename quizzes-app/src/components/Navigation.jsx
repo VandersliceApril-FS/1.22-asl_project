@@ -3,16 +3,28 @@ import { NavLink } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
+const styles = {
+    navbar: {
+        display: 'flex',
+        width: '90%',
+        margin: '0 auto',
+        justifyContent: 'center',
+    },
+    homebutton: {
+        marginRight: '1rem',
+        color: 'black',
+        textDecoration: 'none'
+    }
+}
+
 function Navigation({ isLoggedIn }) {
     return(
-        <Navbar style={{ margin: "0 2rem" }}>                   
+        <Navbar style={styles.navbar}>                   
             <Navbar.Brand>
-                <NavLink 
+                <NavLink
+                    style={styles.homebutton}
                     to='/'
-                    style={{
-                        color: "black",
-                        textDecoration: "none"
-                    }}
+            
                 >
                     Home
                 </NavLink>

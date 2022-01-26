@@ -5,6 +5,15 @@ import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 
+const styles = {
+	quizTitle: {
+		fontSize: '1.5rem'
+	},
+	question: {
+		fontSize: '1.2rem'
+	}
+}
+
 const Quiz = () => {
 	const [quiz, setQuiz] = useState({Questions: []})
 	const params = useParams()
@@ -20,12 +29,12 @@ const Quiz = () => {
 		fetchQuiz()
 	}, [params]);
 	return (
-		<Form id="quiz" style={{ height: "90%", overflow: "scroll" }}>
-			<h2>{quiz.name}</h2>
+		<Form id="quiz" style={{ height: "90%", width: '90%', overflow: "scroll" }}>
+			<h3 style={styles.quizTitle}>Quiz: {quiz.name}</h3>
 			<ListGroup>
 				{quiz.Questions.map(q => (
 					<ListGroup.Item>
-						<h3>{q.question}</h3>
+						<h4 style={styles.question}>{q.question}</h4>
 							<ListGroup>
 							{q.Choices.map(c => (
 								<ListGroup.Item>
@@ -36,7 +45,7 @@ const Quiz = () => {
 					</ListGroup.Item>
 				))}
 			</ListGroup>
-			<Button className="mt-3" variant="dark" type="submit">Submit Quiz</Button>
+			<Button href='/' className="mt-3" variant="dark" type="submit">Submit Quiz</Button>
 		</Form>
 	)
 }
