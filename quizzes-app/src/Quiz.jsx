@@ -18,12 +18,8 @@ const Quiz = () => {
 	}, [params]);
 	return (
 		<form id="quiz">
-			<h1>{quiz.name} Quiz</h1>
-			<p>ID: {quiz.id}</p>
-			{/* <p>Weight: {quiz.weight}%</p> */}
-			{/* <p>Created at: {quiz.createAt}</p> */}
-			<p>Updated at: {quiz.updatedAt}</p>
-			{/* <ul>
+			<h1>{quiz.name}</h1>
+			<ul>
 				{quiz.Questions.map(q => (
 					<li>
 						<h3>{q.question}</h3>
@@ -39,7 +35,7 @@ const Quiz = () => {
 						</ul>
 					</li>
 				))}
-			</ul> */}
+			</ul>
 			<button type="submit">Submit Quiz</button>
 		</form>
 	)

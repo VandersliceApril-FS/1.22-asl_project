@@ -1,20 +1,5 @@
 # Commands
 
-MySql:
-DELETE from Quizzes where name = 'Models and Migrations II';
-DELETE from Quizzes where name = 'Express';
-DELETE from Quizzes where name = 'JSON Return Type';
-DELETE from Quizzes where name = 'Quiz 17';
-DELETE from Quizzes where name = 'dog';
-DELETE from Quizzes where name = 'April Vanderslice';
-DELETE from Quizzes where name = 'April's Quiz';
-**remove all choices**
-DELETE from Choices where name = 'pig';
-DELETE from Choices where name = 'Dog II';
-DELETE from Choices where name = 'Red';
-DELETE from Choices where name = 'Yellow';
-DELETE from Choices where name = 'Dallas';
-
 
 
 **remove all questions**
