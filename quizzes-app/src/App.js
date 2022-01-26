@@ -6,13 +6,13 @@ import {
   Route,
   Routes
 } from 'react-router-dom'
-import Navigation from './Navigation'
 import Home from './Home'
+import Navigation from './Navigation'
 import Login from './Login'
 import Quiz from './Quiz'
 import queryString from 'querystring'
 
-const App = () => {
+function App() {
   const [jwt, setJwt] = useState('')
   useEffect(() => {
     async function fetchJwt() {
@@ -32,18 +32,19 @@ const App = () => {
     fetchJwt()
   }, [])
 
+  // when user clicks log out, they should be rerouted to the login page and jwtState should be updated
   if (!jwt) {
     return <Login />;
   }
-
   return (
     <Router>  
-      <Navigation isLoggedIn={jwt ? true : false } />
       <div className="app-container">
+        <Navigation isLoggedIn={jwt ? true : false} />
         <div className="main-content">
           <Routes>
             <Route exact path='/' element={<Home />} />
             <Route exact path='/quizzes/:id' element={<Quiz />} />
+            <Route exact path='/logout' element={<Home />} />
           </Routes>
         </div>
       </div>
