@@ -36,7 +36,6 @@ quizCtlr.get('/:id', async (req, res) => {
     })
     res.json(quiz)
 })
-"Can view json objects of: 1. quizzes with questions and choices, 2. questions with choices, 3. choices with question"
 
 
 quizCtlr.post('/:id', async(req, res) => {

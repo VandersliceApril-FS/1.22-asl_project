@@ -13,7 +13,8 @@ questionCtlr.post('/', async (req, res) => {
     const question = await Question.create( req.body )
     let quiz = await Quiz.findAll()
     quiz = quiz.shift()
-    question.addQuiz(quiz)
+    quiz.addQuestion(question)
+    // question.addQuiz(quiz)
     res.json(question)
 })
 
