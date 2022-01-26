@@ -42,8 +42,11 @@ quizCtlr.post('/:id', async(req, res) => {
         let quiz = await Quiz.update(req.body, {
             where: { id: Number(req.params.id) }
         })
-    // } 
-    res.render('quizzes/edit', { quiz, errors: req.errors })
+    // }
+    res.json(quiz) 
+    // res.render('quizzes/edit', { quiz})
+    // { quiz, errors: req.errors }
+    
 })
 
 quizCtlr.get('/:id/edit', async (req, res) => {

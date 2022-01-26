@@ -1,7 +1,5 @@
 'use strict';
 
-const { query } = require("express");
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
 
@@ -30,7 +28,7 @@ module.exports = {
       },
       allowNull: true
     })
-    
+
     // Choices table: rename column 'name' -> 'label'. 
     queryInterface.renameColumn('Questions', 'name', 'question')
   },
