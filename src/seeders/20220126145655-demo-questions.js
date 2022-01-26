@@ -104,11 +104,8 @@ module.exports = {
     },
   ], {}),
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('Quizzes', {[Sequelize.Op.or]: [
-      {quizId: 1}, 
-      {quizId: 2},
-      {quizId: 3},
-      {quizId: 4},
-    ]});
+    return queryInterface.bulkDelete('Quizzes', null, {});
   }
 };
+
+// since the questions are connected to quizzes, I am unable to update them at this point --at least not from here. I can update them manually int he table? But that would make things messy.
