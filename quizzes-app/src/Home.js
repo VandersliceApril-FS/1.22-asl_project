@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import queryString from 'querystring'
-import ListGroup from 'react-bootstrap/ListGroup'
+import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 
 
 
@@ -24,13 +27,33 @@ function Home() {
 		<div>
 			<h1>Take a Quiz</h1>
 			<p>Click on any quiz listed below to take one.</p>
-			<ListGroup>
-				{quizzes.map(q => (
-					<ListGroup.Item>
-						<Link to={'/quizzes/' + q.id}>{q.name}</Link>
-					</ListGroup.Item>
-				))}
-			</ListGroup>
+			<Row xs={1} md={2} className="g-4" >
+					{quizzes.map(q => (
+						<Col>
+							<Link 
+								to={'/quizzes/' + q.id}
+								style={{
+									textDecoration: "none",
+									color: "black"
+								}}
+							>
+								<Card style={{ width: '18rem' }}>
+									<Card.Body>
+									<Card.Title>
+										{q.name}
+									</Card.Title>
+									<Card.Text style={{ fontSize: '80%' }}>
+										This is information about the quiz that would ideally entered dynamically.
+									</Card.Text>
+									</Card.Body>
+									<Card.Footer style={{ fontSize: '60%' }}>
+										<small className="text-muted">Last Updated: {q.updatedAt}</small>
+									</Card.Footer>
+								</Card>
+							</Link>
+						</Col>
+					))}
+			</Row>
 		</div>
 	)
 }
