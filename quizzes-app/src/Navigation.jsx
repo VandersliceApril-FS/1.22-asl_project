@@ -23,9 +23,6 @@ class Navigation extends React.Component
                     </Navbar.Brand>
                     <Nav>
                     {this.props.isLoggedIn && 
-                    
-
-                    
                         <NavLink 
                             to='/logout'
                             style={{
