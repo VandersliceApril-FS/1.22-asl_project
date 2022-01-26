@@ -1,7 +1,7 @@
+// import queryString from 'querystring'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import queryString from 'querystring'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -10,7 +10,7 @@ function Home() {
 	const [quizzes, setQuizzes] = useState([])
 	useEffect(() => {
 		async function fetchQuizzes() {
-			const params = queryString.parse(window.location.search.replace(/^\?/, ''))
+			// const params = queryString.parse(window.location.search.replace(/^\?/, ''))
 			const response = await axios('http://localhost:3000/quizzes', {
         headers: {
           token: localStorage.token

@@ -3,11 +3,12 @@
 
 
 **remove all questions**
-curl -X DELETE http://localhost:3000/questions/10
-curl -X DELETE http://localhost:3000/questions/11
+curl -X DELETE http://localhost:3000/questions/16
+curl -X DELETE http://localhost:3000/questions/17
+
 
 **adding choices with a questionId**
- curl -X POST --data "label=fruit&questionId=13" http://localhost:3000/choices
+ curl -X POST --data "questionId=null" http://localhost:3000/choices/26
 
 curl -X POST --data "name=April's Quiz" http://localhost:3000/quizzes
 curl -X POST --data "name=Dallas" http://localhost:3000/choices
