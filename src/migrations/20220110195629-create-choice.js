@@ -8,9 +8,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      label: {
+      name: {
         type: Sequelize.STRING
       },
+      // questionId: {
+      //   type: Sequelize.INTEGER,
+      //   references: {
+      //     model: {
+      //       tableName: 'questions'
+      //     },
+      //     key: 'id'
+      //   },
+      //   allowNull: true
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.Question.belongsTo(models.Quiz)
+      models.Question.belongsTo(models.Quiz) // create fields, add to migration
       models.Question.hasMany(models.Choice)
     }
   };
   Question.init({
-    name: DataTypes.STRING,
+    question: DataTypes.STRING,
     quizId: DataTypes.INTEGER
   }, {
     sequelize,

@@ -1,11 +1,13 @@
 # Commands
 
 curl -X POST --data "name=April's Quiz" http://localhost:3000/quizzes
-
+curl -X POST --data "name=Dallas" http://localhost:3000/choices
 
 **connect a specific question to a quiz by adding a quiz id**
 curl -X POST --data "quizId=20" http://localhost:3000/questions/10
 
+**Edit**
+curl -X POST --data "questionId=10" http://localhost:3000/choices/25
 
 **CREATE new choices**
 curl -X POST --data "label=Washington D.C" http://localhost:3000/choices

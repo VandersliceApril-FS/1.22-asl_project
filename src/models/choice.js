@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Choice.init({
-    name: DataTypes.STRING,
+    label: DataTypes.STRING,
     questionId: DataTypes.INTEGER
   }, {
     sequelize,
