@@ -26,7 +26,7 @@ app.use(cors({
     "allowCrossDomain": true
 }))
 
-app.use(bodyParser.urlencoded({ etended: false }))
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/quizzes',quizRouter)
 app.use('/questions',  questionRouter)
